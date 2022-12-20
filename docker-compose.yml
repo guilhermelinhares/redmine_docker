@@ -1,0 +1,43 @@
+version: '3.3'
+
+services:
+  db:
+    container_name: mysql
+    hostname: mysql
+    image: mysql:5.7
+    restart: always
+    env_file:
+    - ./files/db/db.env
+    volumes:     
+      - mysql_data:/var/lib/mysql
+    networks:
+      srv_redmine:
+        ipv4_address: 172.0.0.2
+
+  redmine:
+    container_name:  redmine
+    hostname: redmine
+    image: redmine
+    restart: always
+    depends_on: 
+      - db
+    ports:
+      - 3001:3000
+    volumes:
+      - ./files/data/plugins:/usr/src/redmine/plugins
+    networks:
+      srv_redmine:
+        ipv4_address: 172.0.0.3  
+    env_file:
+    - ./files/redmine/red.env
+
+volumes:
+  mysql_data:
+
+networks:
+  srv_redmine:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.0.0.0/16
+         gateway: 172.0.0.1
