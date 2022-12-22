@@ -17,7 +17,7 @@ services:
         ipv4_address: 172.0.0.2
 
   redmine:
-    container_name:  redmine
+    container_name: redmine
     hostname: redmine
     image: redmine
     restart: always
@@ -26,9 +26,7 @@ services:
     ports:
       - 3001:3000
     volumes:
-      - ./files/data/redmine:/usr/src/redmine
-      - ./files/data/plugins:/usr/src/redmine/plugins
-      - ./files/data/lib:/usr/src/redmine/lib
+      # - ./files/data/redmine:/usr/src/redmine
     networks:
       srv_redmine:
         ipv4_address: 172.0.0.3  
