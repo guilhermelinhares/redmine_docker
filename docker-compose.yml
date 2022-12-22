@@ -26,7 +26,7 @@ services:
     ports:
       - 3001:3000
     volumes:
-      -  redmine_data:/usr/src/redmine
+      - ./files/data/redmine:/usr/src/redmine
       - ./files/data/plugins:/usr/src/redmine/plugins
       - ./files/data/lib:/usr/src/redmine/lib
     networks:
@@ -37,7 +37,6 @@ services:
 
 volumes:
   mysql_data:
-  redmine_data:
 
 networks:
   srv_redmine:
