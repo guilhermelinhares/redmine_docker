@@ -37,6 +37,7 @@ services:
 
 volumes:
   mysql_data:
+  redmine_data:
 
 networks:
   srv_redmine:
